@@ -17,9 +17,9 @@
 - **Title**: A Q-learning approach to the continuous control problem of robot inverted pendulum balancing
 
 ## Paper 04
-- **Link**: 
-- **Date**: 
-- **Title**: 
+- **Link**: 10.1109/IETC61393.2024.10564347 
+- **Date**: 23 July 2024
+- **Title**: Q-Learning_Based_Control_for_Swing-Up_and_Balancing_of_Inverted_Pendulum
 
 ## Paper 05
 - **Link**: 
