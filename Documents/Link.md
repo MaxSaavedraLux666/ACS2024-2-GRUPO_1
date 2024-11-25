@@ -7,9 +7,9 @@
 - **Title**: Knowledge Guided Fuzzy Deep Reinforcement Learning
 
 ## Paper 02
-- **Link**: https://doi.org/10.1016/j.comnet.2023.109934
-- **Date**: 10 July 2023
-- **Title**: A survey on how network simulators serve reinforcement learning in wireless networks
+- **Link**: https://doi.org/10.22146/jnteti.v12i3.7065
+- **Date**: 30 August 2023
+- **Title**:Inverted Pendulum Control: A Comparative Study from Conventional Control to Reinforcement Learning
 
 ## Paper 03
 - **Link**: https://doi.org/10.1016/j.iswa.2023.200313
