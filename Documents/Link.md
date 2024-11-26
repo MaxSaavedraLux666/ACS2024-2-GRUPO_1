@@ -1,6 +1,21 @@
 # Project
 
-[Overleaf Link](https://www.overleaf.com/6325884828qqwywgsgqdvn#6c9168)
+<<<<<<< HEAD
+Paper 01:
+
+- Link: https://doi.org/10.1016/j.eswa.2024.125823
+- Date: 15 November 2024
+- Title: Knowledge Guided Fuzzy Deep Reinforcement Learning
+  =======
+  [Overleaf Link](https://www.overleaf.com/6325884828qqwywgsgqdvn#6c9168)
+
+>>>>>>> 25ae48d0c4cd876f608ca6af30f6c361e217aeaa
+>>>>>>>
+>>>>>>
+>>>>>
+>>>>
+>>>
+>>
 
 ## Paper 01
 
@@ -12,7 +27,7 @@
 
 - **Link**: https://doi.org/10.22146/jnteti.v12i3.7065
 - **Date**: 30 August 2023
-- **Title**:Inverted Pendulum Control: A Comparative Study from Conventional Control to Reinforcement Learning
+- **Title**: Inverted Pendulum Control: A Comparative Study from Conventional Control to Reinforcement Learning
 
 ## Paper 03
 
@@ -24,7 +39,7 @@
 
 - **Link**: 10.1109/IETC61393.2024.10564347
 - **Date**: 23 July 2024
-- **Title**: Q-Learning_Based_Control_for_Swing-Up_and_Balancing_of_Inverted_Pendulum
+- **Title**: Q-Learning Based Control for Swing-Up and Balancing of Inverted Pendulum
 
 ## Paper 05
 
