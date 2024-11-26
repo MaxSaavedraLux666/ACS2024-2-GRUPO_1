@@ -28,6 +28,6 @@
 
 ## Paper 05
 
-- **Link**: https: //doi.org/10.1016/j.rineng.2024.102462
-- **Date**: 1 September 2024
-- **Title**: Distributed resource optimisatioon using the Q-learning algorithm, in divice-to-devide communication: A reinforcement learning paradigm
+- **Link**: https://doi.org/10.1371/journal.pone.0280071
+- **Date**: 13 February 2023
+- **Title**: Reinforcement learning approach to control an inverted pendelum: A general framework for educational purposes
