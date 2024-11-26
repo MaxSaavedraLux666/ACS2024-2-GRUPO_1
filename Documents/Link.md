@@ -28,6 +28,6 @@
 
 ## Paper 05
 
-- **Link**: https://doi.org/10.1109/ICCAE56788.2023.10111485
-- **Date**: 5 March 2023
-- **Title**: Proximity-Based Reward System and Reinforcement Learning for Path Planning
+- **Link**: https: //doi.org/10.1016/j.rineng.2024.102462
+- **Date**: 1 September 2024
+- **Title**: Distributed resource optimisatioon using the Q-learning algorithm, in divice-to-devide communication: A reinforcement learning paradigm
