@@ -1,21 +1,8 @@
 # Project
 
-<<<<<<< HEAD
 Paper 01:
 
-- Link: https://doi.org/10.1016/j.eswa.2024.125823
-- Date: 15 November 2024
-- Title: Knowledge Guided Fuzzy Deep Reinforcement Learning
-  =======
   [Overleaf Link](https://www.overleaf.com/6325884828qqwywgsgqdvn#6c9168)
-
->>>>>>> 25ae48d0c4cd876f608ca6af30f6c361e217aeaa
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
 
 ## Paper 01
 
@@ -31,9 +18,9 @@ Paper 01:
 
 ## Paper 03
 
-- **Link**: https://doi.org/10.1016/j.iswa.2023.200313
-- **Date**: 7 February 2022
-- **Title**: A Q-learning approach to the continuous control problem of robot inverted pendulum balancing
+- **Link**: https://doi.org/10.20944/preprints202005.0181.v1
+- **Date**: 7 February 2020
+- **Title**: Modeling an Inverted Pendulum via Differential Equations and Reinforcement Learning Techniques
 
 ## Paper 04
 
