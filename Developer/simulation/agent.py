@@ -78,3 +78,44 @@ class QLearningAgent:
                     self.epsilon = 0.999 * self.epsilon
 
             self.episode_rewards.append(total_reward)
+            
+
+    def test(self, num_episodes=10, render=True):
+            """Tests the trained agent."""
+            total_rewards = []
+            for _ in range(num_episodes):
+                state, _ = self.env.reset()
+                if render:
+                    self.env.render()
+
+                total_reward = 0
+                done = False
+                while not done:
+                    if render:
+                        time.sleep(0.02)
+                    action = np.argmax(self.q_table[self._discretize_state(state)])
+                    state, reward, done, _, _ = self.env.step(action)
+                    total_reward += reward
+
+                total_rewards.append(total_reward)
+
+            if render:
+                self.env.close()
+
+            return total_rewards
+
+    def simulate_random_strategy(self, num_episodes=100, num_timesteps=1000):
+        """Simulates random actions for comparison."""
+        total_rewards = []
+        for _ in range(num_episodes):
+            state, _ = self.env.reset()
+            episode_reward = 0
+            done = False
+            for _ in range(num_timesteps):
+                action = self.env.action_space.sample()
+                state, reward, done, _, _ = self.env.step(action)
+                episode_reward += reward
+                if done:
+                    break
+            total_rewards.append(episode_reward)
+        return total_rewards
