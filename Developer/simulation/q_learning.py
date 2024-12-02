@@ -139,3 +139,42 @@ class Qlearning():
                 posicion_inicial, velocidad_inicial, angulo_inicial, velocidad_angular_inicial)
 
         return self.tabla_valor
+    
+    def entrenar_algoritmo_v1(self, cantidad_pasos, x_inicial, dx_inicial, theta_inicial, dtheta_inicial):
+        """Entrena el algoritmo Q-learning."""
+        self.crear_tabla_valores()
+        self.crear_tabla_indice_estados()
+
+        estado_actual = (x_inicial, dx_inicial, theta_inicial, dtheta_inicial)
+        for paso in range(cantidad_pasos):
+            # Discretizar el estado actual
+            try:
+                indice_actual = self.discretizar_estado(*estado_actual)
+            except ValueError as e:
+                print(f"Error en paso {paso}: {e}")
+                break
+
+            # Elegir acción usando política epsilon-greedy
+            accion = self.seleccionar_accion(indice_actual)
+
+            # Actualizar el estado (simula el entorno)
+            recompensa, siguiente_estado, estado_terminal = self.simular_entorno(
+                estado_actual, accion)
+
+            # Discretizar el siguiente estado
+            try:
+                indice_siguiente = self.discretizar_estado(*siguiente_estado)
+            except ValueError as e:
+                print(
+                    f"Error en paso {paso} al discretizar el siguiente estado: {e}")
+                break
+
+            # Actualizar tabla Q
+            valor_estado = self.tabla_valor[indice_actual][accion]
+            valor_estado_maximo = max(self.tabla_valor[indice_siguiente])
+            nuevo_valor = self.bellman_valor_accion(
+                valor_estado, recompensa, valor_estado_maximo, estado_terminal)
+            self.actualizar_valor_tabla(indice_actual, accion, nuevo_valor)
+
+            # Actualizar el estado actual
+            estado_actual = siguiente_estado
