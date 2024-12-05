@@ -1,8 +1,10 @@
 import numpy as np
+import csv
+import os
 
 class Qlearning():
     """Clase para el algoritmo Q-learning."""
-    
+
     def __init__(self, alpha=0.1, gamma=0.99, epsilon=2.0):
         """Valores predeterminados."""
         self.alpha = alpha
@@ -139,42 +141,65 @@ class Qlearning():
                 posicion_inicial, velocidad_inicial, angulo_inicial, velocidad_angular_inicial)
 
         return self.tabla_valor
-    
-    def entrenar_algoritmo_v1(self, cantidad_pasos, x_inicial, dx_inicial, theta_inicial, dtheta_inicial):
-        """Entrena el algoritmo Q-learning."""
+
+    def entrenar_algoritmo_v2(self, cantidad_pasos, posicion_inicial, velocidad_inicial, angulo_inicial, velocidad_angular_inicial, csv_file='entrenamiento.csv'):
+        """Desarrolla el entrenamiento del algoritmo Q-learning y guarda los datos en un CSV."""
+        estado_actual = (posicion_inicial, velocidad_inicial,
+                         angulo_inicial, velocidad_angular_inicial)
         self.crear_tabla_valores()
         self.crear_tabla_indice_estados()
 
-        estado_actual = (x_inicial, dx_inicial, theta_inicial, dtheta_inicial)
+        # Crear o limpiar el archivo CSV
+        headers = ['Paso', 'Estado Actual', 'Acción',
+                   'Recompensa', 'Siguiente Estado', 'Estado Terminal']
+        if not os.path.exists(csv_file):
+            with open(csv_file, mode='w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(headers)
+
         for paso in range(cantidad_pasos):
-            # Discretizar el estado actual
-            try:
-                indice_actual = self.discretizar_estado(*estado_actual)
-            except ValueError as e:
-                print(f"Error en paso {paso}: {e}")
-                break
+            # Elegir acción basada en epsilon-greedy
+            p = np.random.rand()
+            indice_estado = self.discretizar_estado(*estado_actual)
+            if p > self.epsilon:
+                accion = np.argmax(self.tabla_valor[indice_estado])
+            else:
+                accion = np.random.choice([0, 1])
 
-            # Elegir acción usando política epsilon-greedy
-            accion = self.seleccionar_accion(indice_actual)
+            # Simular la acción para obtener el nuevo estado y recompensa
+            nueva_posicion = np.clip(
+                estado_actual[0] + np.random.uniform(-0.1, 0.1), -2.4, 2.4)
+            nueva_velocidad = np.clip(
+                estado_actual[1] + np.random.uniform(-0.05, 0.05), -1, 1)
+            nuevo_angulo = np.clip(
+                estado_actual[2] + np.random.uniform(-0.2, 0.2), -0.2, 0.2)
+            nueva_velocidad_angular = np.clip(
+                estado_actual[3] + np.random.uniform(-0.1, 0.1), -1, 1)
+            siguiente_estado = (nueva_posicion, nueva_velocidad,
+                                nuevo_angulo, nueva_velocidad_angular)
 
-            # Actualizar el estado (simula el entorno)
-            recompensa, siguiente_estado, estado_terminal = self.simular_entorno(
-                estado_actual, accion)
+            recompensa = 1 if abs(nuevo_angulo) < 0.2 and abs(
+                nueva_posicion) < 2.4 else -1
+            estado_terminal = recompensa == -1
 
-            # Discretizar el siguiente estado
-            try:
-                indice_siguiente = self.discretizar_estado(*siguiente_estado)
-            except ValueError as e:
-                print(
-                    f"Error en paso {paso} al discretizar el siguiente estado: {e}")
-                break
+            # Guardar los datos en el CSV
+            with open(csv_file, mode='a', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow([
+                    paso,
+                    estado_actual,
+                    accion,
+                    recompensa,
+                    siguiente_estado,
+                    estado_terminal
+                ])
 
-            # Actualizar tabla Q
-            valor_estado = self.tabla_valor[indice_actual][accion]
-            valor_estado_maximo = max(self.tabla_valor[indice_siguiente])
-            nuevo_valor = self.bellman_valor_accion(
-                valor_estado, recompensa, valor_estado_maximo, estado_terminal)
-            self.actualizar_valor_tabla(indice_actual, accion, nuevo_valor)
+            # Actualizar tabla
+            self.actualizar_valor_tabla(
+                estado_actual, accion, recompensa, siguiente_estado, estado_terminal)
 
-            # Actualizar el estado actual
-            estado_actual = siguiente_estado
+            # Si es un estado terminal, reiniciar el estado actual
+            estado_actual = siguiente_estado if not estado_terminal else (
+                posicion_inicial, velocidad_inicial, angulo_inicial, velocidad_angular_inicial)
+
+        return self.tabla_valor
