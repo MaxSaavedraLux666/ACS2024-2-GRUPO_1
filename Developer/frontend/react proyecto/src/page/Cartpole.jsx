@@ -13,7 +13,7 @@ function Cartpole() {
             {/* Navbar */}
             <div className="navbar">
                 <span className="navbarTitle">Cart Pole</span>
-                <span className="navbarItem">Nosotros</span>
+                {/* <span className="navbarItem">Nosotros</span> */}
             </div>
 
             {/* Parametros */}
@@ -60,7 +60,7 @@ function Cartpole() {
                     <button className="nextButton">Siguiente</button>
                 </div>
                 <div className="leyenda">
-                    <h3>Descripción de los parámetros</h3>
+                    <h2>Descripción de los parámetros</h2>
                     <p>Haz clic en el signo de interrogación junto a los parámetros para más detalles.</p>
                     {showDescription === 'epsilon' && <div className="helpText">Epsilon controla la exploración del agente. Un valor alto significa más exploración.</div>}
                     {showDescription === 'gamma' && <div className="helpText">Gamma es el factor de descuento para el valor futuro de las recompensas.</div>}

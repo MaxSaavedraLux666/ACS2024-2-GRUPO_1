@@ -23,8 +23,10 @@
 }
 
 .navbarTitle {
+    margin: auto;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
+    font-style: italic;
 }
 
 .navbarItem {
@@ -80,7 +82,8 @@
 
 .variables div{
     height: auto;
-    width: 85px;
+    width: 95px;
+    font-weight: bold;
 }
 
 .variables{
@@ -111,6 +114,7 @@
 
 /* Content Simulator */
 .contentSimulator {
+    background-color:  #F0E6D2;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -119,7 +123,7 @@
 }
 
 .carruselSimulator {
-    background-color: #4211F2;
+    background-color: #6d997a;
     width: 45%;
     padding: 20px;
     border-radius: 8px;
@@ -142,14 +146,17 @@
 }
 
 .nextButton {
-    background-color: #02F5E9;
+    height: 80%;
+    width: 150px;
+    text-align: center;
+    background-color: #333;
     padding: 10px 20px;
     border: none;
     color: white;
-    font-size: 14px;
+    font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: 15px;
     transition: background-color 0.3s ease;
 }
 
@@ -159,7 +166,9 @@
 
 /* Leyenda Section */
 .leyenda {
-    background-color: #f18e89;
+    background-color: whitesmoke;
+    margin: auto;
+    text-align: center;
     width: 45%;
     padding: 20px;
     color: #333;
