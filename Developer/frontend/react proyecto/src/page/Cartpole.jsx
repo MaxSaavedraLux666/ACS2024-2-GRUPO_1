@@ -18,38 +18,38 @@ function Cartpole() {
 
             {/* Parametros */}
             <div className="contentParameter">
-                <div className="parameterBox">
-                    <label>
-                        Epsilon
+                {/* <div className="parameterBox"> */}
+                    <label className='variables'>
+                        <div>Epsilon</div>
                         <input type="number" name="epsilon" />
                         <button onClick={() => toggleDescription('epsilon')} className="helpButton">?</button>
                     </label>
-                    <label>
-                        Gamma
+                    <label className='variables'>
+                        <div>Gamma</div>
                         <input type="number" name="gamma" />
                         <button onClick={() => toggleDescription('gamma')} className="helpButton">?</button>
                     </label>
-                    <label>
-                        Masa de Carro
+                    <label className='variables'>
+                        <div>Masa de Carro</div>
                         <input type="number" name="massCar" />
                         <button onClick={() => toggleDescription('massCar')} className="helpButton">?</button>
                     </label>
-                    <label>
-                        Longitud del Péndulo
+                    <label className='variables'>
+                        <div>Longitud del Péndulo</div>
                         <input type="number" name="pendulumLength" />
                         <button onClick={() => toggleDescription('pendulumLength')} className="helpButton">?</button>
                     </label>
-                    <label>
-                        Fuerza Máxima
+                    <label className='variables'>
+                        <div>Fuerza Máxima</div>
                         <input type="number" name="maxForce" />
                         <button onClick={() => toggleDescription('maxForce')} className="helpButton">?</button>
                     </label>
-                    <label>
-                        Tasa de Aprendizaje
+                    <label className='variables'>
+                        <div>Tasa de Aprendizaje</div>
                         <input type="number" name="learningRate" />
                         <button onClick={() => toggleDescription('learningRate')} className="helpButton">?</button>
                     </label>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Simulador */}
