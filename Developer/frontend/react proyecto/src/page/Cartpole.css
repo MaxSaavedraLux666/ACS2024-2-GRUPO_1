@@ -1,0 +1,238 @@
+/* General Layout */
+.contentMain {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 0;
+    margin: 0;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1127F2;
+    padding: 20px;
+    color: white;
+    font-size: 18px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbarTitle {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.navbarItem {
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.navbarItem:hover {
+    background-color: #02F5E9;
+}
+
+/* Content Parameter (Grid Layout) */
+.contentParameter {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+    background-color: #11B6F2;
+    color: white;
+    justify-items: center;
+}
+
+.parameterBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.parameterBox label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.parameterBox input {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #619DF2;
+    background-color: #fff;
+    color: #333;
+}
+
+.parameterBox input:focus {
+    outline: none;
+    border-color: #116FF2;
+}
+
+.helpButton {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.helpText {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Content Simulator */
+.contentSimulator {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px;
+    gap: 30px;
+}
+
+.carruselSimulator {
+    background-color: #4211F2;
+    width: 45%;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.carouselItem {
+    background-color: #619DF2;
+    width: 90%;
+    margin-bottom: 15px;
+    padding: 15px;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.nextButton {
+    background-color: #02F5E9;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.nextButton:hover {
+    background-color: #1127F2;
+}
+
+/* Leyenda Section */
+.leyenda {
+    background-color: #f18e89;
+    width: 45%;
+    padding: 20px;
+    color: #333;
+    font-size: 14px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.leyenda h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.leyenda p {
+    font-size: 14px;
+}
+
+/* Graphs Section */
+.graphsSection {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.graphsContainer {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.graphBox {
+    background-color: #e1e1e1;
+    height: 250px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Action Buttons */
+.actionButtons {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.trainButton,
+.simulateButton {
+    background-color: #198585;
+    color: white;
+    padding: 15px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.trainButton:hover,
+.simulateButton:hover {
+    background-color: #156e6e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contentSimulator {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carruselSimulator,
+    .leyenda {
+        width: 100%;
+    }
+
+    .graphsSection {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .graphsContainer {
+        width: 100%;
+    }
+
+    .actionButtons {
+        width: 100%;
+    }
+}
