@@ -302,3 +302,42 @@ plt.legend()
 plt.grid()
 plt.savefig(os.path.join(output_folder, "duracion_episodios.png"))
 plt.show()
+
+# =============================================================================
+# Simulación Real
+# =============================================================================
+
+# Reiniciar el entorno para la simulación.
+state = env.reset()
+done = False
+simulated_rewards = 0
+
+# Inicializar lista para guardar la duración de los episodios.
+episode_duration = []
+
+# Simulación en tiempo real
+while not done:
+    """Simulación del péndulo controlado tras entrenamiento."""
+    for event in pygame.event.get():
+        """Gestionar eventos de Pygame (cierre de ventana)."""
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+
+    # Selecciona la acción basándose en la tabla Q aprendida (explotación pura).
+    discrete_state = discretize_state(state, n_states)
+    action = np.argmax(q_table[discrete_state])
+
+    # Avanza un paso en el entorno.
+    next_state, reward, done = env.step(action)
+
+    # Renderiza el entorno en tiempo real.
+    env.render(state)
+
+    state = next_state  # Actualiza el estado actual.
+    simulated_rewards += reward  # Acumula la recompensa.
+
+print(
+    f"Recompensa total obtenida en la simulación real: {simulated_rewards:.2f}")
+
+pygame.quit()
