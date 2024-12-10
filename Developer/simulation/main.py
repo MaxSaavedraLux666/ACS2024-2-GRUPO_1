@@ -1,7 +1,7 @@
 import pygame
 import numpy as np
 from cart_pole import CartPoleEnv, WIDTH, HEIGHT
-from train import train,q_table
+from train import train, q_table
 from graphics import plot_results
 from variables import epsilon,n_states
 from functions import discretize_state
