@@ -137,3 +137,107 @@ def discretize_state(state, n_states):
     ]
     indices = [np.digitize(s, bins) - 1 for s, bins in zip(state, state_bins)]
     return tuple(indices)
+
+def select_action(state, epsilon, q_table):
+    """Selecciona una acción utilizando la estrategia epsilon-greedy.
+
+    Args:
+        state (list): El estado actual del entorno.
+        epsilon (float): La probabilidad de exploración.
+        q_table (numpy.ndarray): La tabla Q.
+
+    Returns:
+        int: El índice de la acción seleccionada.
+    """
+    discrete_state = discretize_state(state, n_states)
+    if random.uniform(0, 1) < epsilon:
+        return random.randrange(n_actions)  # Exploración
+    else:
+        return np.argmax(q_table[discrete_state])  # Explotación
+
+
+# =============================================================================
+# Hiperparámetros y Entrenamiento
+# =============================================================================
+
+# Número de episodios de entrenamiento.  Aumentar puede mejorar el aprendizaje, pero toma más tiempo.
+episodes = 40000
+# Factor de descuento.  Controla la importancia de las recompensas futuras (cercano a 1 valora más el futuro).
+gamma = 0.99
+# Probabilidad inicial de exploración (epsilon-greedy).  Empieza explorando completamente.
+epsilon = 1.0
+# Factor de decaimiento de epsilon.  Controla la velocidad a la que disminuye la exploración.  Cerca de 1 decae lentamente.
+epsilon_decay = 0.995
+# Probabilidad mínima de exploración.  Se deja algo de exploración siempre.
+epsilon_min = 0.01
+# Tasa de aprendizaje.  Controla la velocidad de actualización de la tabla Q.  Muy alto puede ser inestable, muy bajo lento.
+learning_rate = 0.1
+# Número de estados discretos por dimensión.  Afecta a la granularidad de la discretización y al tamaño de la tabla Q.
+n_states = 8
+# Número de acciones posibles (izquierda, quieto, derecha).
+n_actions = 3
+
+# Tabla Q: Inicializada con ceros.
+q_table = np.zeros((n_states, n_states, n_states,
+                   n_states, n_states, n_actions))
+
+env = CartPoleEnv()     # Crea una instancia del entorno.
+# Lista para almacenar las recompensas totales por episodio.
+total_rewards = []
+
+# =============================================================================
+# Entrenamiento
+# =============================================================================
+
+episode_durations = []  # Lista para almacenar las duraciones de los episodios.
+
+for episode in range(episodes):
+    """Bucle principal de entrenamiento."""
+    state = env.reset()             # Reinicia el entorno al comienzo de cada episodio.
+    # Bandera que indica si el episodio ha terminado.
+    done = False
+    total_reward = 0               # Acumula la recompensa total del episodio.
+    duration = 0  # Contador de duración del episodio
+
+    while not done:
+        """Bucle que itera hasta que el episodio termina."""
+        for event in pygame.event.get():
+            """Gestiona los eventos de Pygame (cierre de ventana)."""
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+
+        # Selecciona una acción usando la política epsilon-greedy.
+        action = select_action(state, epsilon, q_table)
+        # Realiza la acción en el entorno y obtiene el nuevo estado, recompensa y bandera de fin.
+        next_state, reward, done = env.step(action)
+        # Renderiza el estado actual en la pantalla.
+        #env.render(next_state)
+
+        # Discretiza el estado actual.
+        discrete_state = discretize_state(state, n_states)
+        # Discretiza el nuevo estado.
+        next_discrete_state = discretize_state(next_state, n_states)
+
+        # Calcula el objetivo de aprendizaje temporal (TD target).
+        td_target = reward + gamma * \
+            np.max(q_table[next_discrete_state]) if not done else reward
+        # Actualiza la tabla Q usando la regla de aprendizaje Q-learning.
+        q_table[discrete_state + (action,)] += learning_rate * \
+            (td_target - q_table[discrete_state + (action,)])
+
+        state = next_state             # Actualiza el estado actual.
+        total_reward += reward        # Acumula la recompensa.
+        duration += 1  # Incrementa la duración del episodio.
+
+    # Guarda la recompensa total del episodio.
+    total_rewards.append(total_reward)
+    episode_durations.append(duration)
+
+    if epsilon > epsilon_min:
+        # Disminuye gradualmente la probabilidad de exploración (epsilon).
+        epsilon *= epsilon_decay
+
+    # Imprime información del episodio.
+    print(
+        f"Episodio: {episode + 1}/{episodes}, Recompensa: {total_reward:.2f}, Duración: {duration}, Epsilon: {epsilon:.4f}")
