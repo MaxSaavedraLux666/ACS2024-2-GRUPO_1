@@ -241,3 +241,64 @@ for episode in range(episodes):
     # Imprime información del episodio.
     print(
         f"Episodio: {episode + 1}/{episodes}, Recompensa: {total_reward:.2f}, Duración: {duration}, Epsilon: {epsilon:.4f}")
+    
+# =============================================================================
+# Preparación para guardar gráficos
+# =============================================================================
+output_folder = "graphs"
+os.makedirs(output_folder, exist_ok=True)  # Crea la carpeta si no existe.
+
+# =============================================================================
+# Gráfica de Resultados
+# =============================================================================
+
+# Recompensa Total por Episodio
+plt.figure(figsize=(12, 5))
+plt.plot(range(episodes), total_rewards, label="Recompensa Total")
+plt.xlabel("Episodio")
+plt.ylabel("Recompensa")
+plt.title("Recompensa Total por Episodio")
+plt.legend()
+plt.grid()
+plt.savefig(os.path.join(output_folder, "recompensa_total.png"))
+plt.show()
+
+# Curva de Aprendizaje (Recompensa Promedio)
+window_size = 50  # Tamaño de la ventana para el promedio móvil.
+avg_rewards = np.convolve(total_rewards, np.ones(
+    window_size) / window_size, mode="valid")
+
+plt.figure(figsize=(12, 5))
+plt.plot(range(len(avg_rewards)), avg_rewards, label="Recompensa Promedio")
+plt.xlabel("Episodio")
+plt.ylabel("Recompensa Promedio")
+plt.title("Curva de Aprendizaje")
+plt.legend()
+plt.grid()
+plt.savefig(os.path.join(output_folder, "curva_aprendizaje.png"))
+plt.show()
+
+# Curva de Explotación vs Exploración (Epsilon)
+epsilons = [1.0 * (epsilon_decay ** i) for i in range(episodes)]
+epsilons = [max(epsilon, epsilon_min) for epsilon in epsilons]
+
+plt.figure(figsize=(12, 5))
+plt.plot(range(episodes), epsilons, label="Epsilon (Exploración)")
+plt.xlabel("Episodio")
+plt.ylabel("Epsilon")
+plt.title("Curva de Explotación vs Exploración")
+plt.legend()
+plt.grid()
+plt.savefig(os.path.join(output_folder, "exploracion_vs_explotacion.png"))
+plt.show()
+
+# Duración de los Episodios
+plt.figure(figsize=(12, 5))
+plt.plot(range(episodes), episode_durations, label="Duración del Episodio")
+plt.xlabel("Episodio")
+plt.ylabel("Duración (pasos)")
+plt.title("Duración de los Episodios")
+plt.legend()
+plt.grid()
+plt.savefig(os.path.join(output_folder, "duracion_episodios.png"))
+plt.show()
