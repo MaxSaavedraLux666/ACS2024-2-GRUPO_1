@@ -1,91 +1,23 @@
-""" Funciones Básicas del Proyecto """
+import numpy as np
+import math
+import random
+from cart_pole import WIDTH
+from variables import n_states,n_actions
 
-import time
+def discretize_state(state, n_states):
+    state_bins = [
+        np.linspace(-math.pi / 2, math.pi / 2, n_states),  # theta
+        np.linspace(-2, 2, n_states),  # theta_dot
+        np.linspace(0, WIDTH, n_states),  # x
+        np.linspace(-5, 5, n_states),  # x_dot
+        np.linspace(-10, 10, n_states)  # x_ddot
+    ]
+    indices = [np.digitize(s, bins) - 1 for s, bins in zip(state, state_bins)]
+    return tuple(indices)
 
-class Function:
-    """Clase para calcular ecuaciones del sistema de péndulo invertido."""
-
-    def __init__(self, masa_auto, masa_pendulo, longitud_cuerda, gravedad):
-        """
-        Inicializa los valores predeterminados del sistema.
-        
-        Args:
-            masa_auto (float): Masa del carro (M).
-            masa_pendulo (float): Masa del péndulo (m).
-            longitud_cuerda (float): Longitud de la varilla (l).
-            gravedad (float): Aceleración gravitacional (g).
-        """
-        self.masa_auto = masa_auto
-        self.masa_pendulo = masa_pendulo
-        self.longitud_cuerda = longitud_cuerda
-        self.gravedad = gravedad
-
-    def calcular_aceleracion_theta(self, fuerza, angulo):
-        """
-        Calcula la aceleración angular del péndulo (θ̈) usando la ecuación (3).
-
-        Args:
-            fuerza (float): Fuerza aplicada al carro (u).
-            angulo (float): Ángulo de inclinación del péndulo (θ).
-
-        Returns:
-            float: Aceleración angular del péndulo (θ̈).
-        """
-        numerador = (self.masa_auto + self.masa_pendulo) * \
-            self.gravedad * angulo - fuerza  # (M + m)g(θ̈) - u
-        denominador = self.longitud_cuerda * self.masa_auto # Ml
-        return numerador / denominador
-
-    def calcular_aceleracion_x(self, fuerza, angulo):
-        """
-        Calcula la aceleración lineal del carro (ẍ) usando la ecuación (4).
-
-        Args:
-            fuerza (float): Fuerza aplicada al carro (u).
-            angulo (float): Ángulo de inclinación del péndulo (θ).
-
-        Returns:
-            float: Aceleración lineal del carro (ẍ).
-        """
-        numerador = fuerza - self.masa_pendulo * \
-            self.gravedad * angulo  # u - mg(θ)
-        denominador = self.masa_auto # M
-        return numerador / denominador
-
-    def calcular_fuerza(self, aceleracion_x, angulo):
-        """
-        Calcula la fuerza necesaria (u) usando la ecuación (4).
-
-        Args:
-            aceleracion_x (float): Aceleración lineal del carro (ẍ).
-            angulo (float): Ángulo de inclinación del péndulo (θ).
-
-        Returns:
-            float: Fuerza aplicada al carro (u).
-        """
-        return self.masa_auto * aceleracion_x + self.masa_pendulo * self.gravedad * angulo
-
-    def calcular_valores(self, fuerza, angulo, velocidad_x, velocidad_theta):
-        """
-        Calcula y retorna las aceleraciones lineales y angulares del sistema.
-
-        Args:
-            fuerza (float): Fuerza aplicada al carro (u).
-            angulo (float): Ángulo de inclinación del péndulo (θ).
-            velocidad_x (float): Velocidad lineal del carro (ẋ).
-            velocidad_theta (float): Velocidad angular del péndulo (θ̇).
-
-        Returns:
-            dict: Diccionario con aceleración angular (θ̈) y lineal (ẍ).
-        """
-        aceleracion_theta = self.calcular_aceleracion_theta(fuerza, angulo)
-        aceleracion_x = self.calcular_aceleracion_x(fuerza, angulo)
-
-        return {
-            "aceleracion_angular_theta": aceleracion_theta,
-            "aceleracion_lineal_x": aceleracion_x,
-            "velocidad_actual_x": velocidad_x,
-            "velocidad_actual_theta": velocidad_theta,
-        }
-
-    
+def select_action(state, epsilon, q_table):
+    discrete_state = discretize_state(state, n_states)
+    if random.uniform(0, 1) < epsilon:
+        return random.randrange(n_actions)  # Exploración
+    else:
+        return np.argmax(q_table[discrete_state])  # Explotación
