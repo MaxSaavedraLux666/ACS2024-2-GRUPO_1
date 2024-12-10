@@ -1,5 +1,5 @@
-from simulation.q_learning import QLearning
-from simulation.sarsa import SARSA
+from Developer.simulation.others.q_learning import QLearning
+from Developer.simulation.others.sarsa import SARSA
 
 def train_model(algorithm):
     """

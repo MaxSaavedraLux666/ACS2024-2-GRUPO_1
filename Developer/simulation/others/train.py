@@ -1,5 +1,5 @@
 import gym
-from agent import QLearningAgent
+from Developer.simulation.others.agent import QLearningAgent
 
 
 def train_agent():
