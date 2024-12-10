@@ -1,3 +1,12 @@
+:root{
+    box-sizing: border-box;
+    --azul-mega-oscuro:#01161e;
+    --azul-super-oscuro:#03045E;
+    --gray:#808080;
+}
+
+
+
 /* General Layout */
 .contentMain {
     display: flex;
@@ -8,6 +17,7 @@
     background-color: #f5f5f5;
     padding: 0;
     margin: 0;
+    overflow: auto;
 }
 
 /* Navbar */
@@ -15,7 +25,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1127F2;
+    background-color: #023E8A;
     padding: 20px;
     color: white;
     font-size: 18px;
@@ -23,8 +33,10 @@
 }
 
 .navbarTitle {
+    margin: auto;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
+    font-style: italic;
 }
 
 .navbarItem {
@@ -40,18 +52,22 @@
 /* Content Parameter (Grid Layout) */
 .contentParameter {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    grid-gap: 20px;
-    padding: 20px;
-    background-color: #11B6F2;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    grid-template-rows: repeat(4, minmax(100px, 1fr));
+    grid-gap: 3px;
+    padding-left: 5px;
+    padding-right: px;
+    /* background-color: #00B4D8; */
+    background-color: var(--azul-super-oscuro);
     color: white;
     justify-items: center;
 }
 
 .parameterBox {
     display: flex;
-    flex-direction: column;
-    width: 100%;
+    flex-direction: row;
+    width: auto;
+    height: 100%;
 }
 
 .parameterBox label {
@@ -61,7 +77,28 @@
     font-weight: bold;
 }
 
-.parameterBox input {
+.containerButton{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.parameterButton{
+    background-color: #0077B6;
+    border: 2px solid white ;
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    text-align: center;
+    font-size: larger;
+}
+
+.parameterButton:hover{
+    background-color: #023E8A
+}
+
+.variables input {
     padding: 10px;
     font-size: 14px;
     border-radius: 5px;
@@ -70,18 +107,39 @@
     color: #333;
 }
 
-.parameterBox input:focus {
+.variables input:focus {
     outline: none;
     border-color: #116FF2;
 }
 
+.variables div{
+    height: auto;
+    width: 95px;
+    font-weight: bold;
+}
+
+.variables{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap:5px;
+}
+
 .helpButton {
     background-color: transparent;
-    border: none;
+    margin-left: -3px;
+    border: 1px solid transparent;
     color: white;
     cursor: pointer;
-    margin-top: 10px;
     font-weight: bold;
+    border-radius: 50%;
+}
+
+.helpButton:hover{
+    background-color: #CAF0F8;
+    border: 1px solid #00B4D8;
+    color: blue;
 }
 
 .helpText {
@@ -95,6 +153,7 @@
 
 /* Content Simulator */
 .contentSimulator {
+    background-color:  #CAF0F8;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -103,7 +162,7 @@
 }
 
 .carruselSimulator {
-    background-color: #4211F2;
+    background-color: #0077B6;
     width: 45%;
     padding: 20px;
     border-radius: 8px;
@@ -115,7 +174,7 @@
 }
 
 .carouselItem {
-    background-color: #619DF2;
+    background-color: #48CAE4;
     width: 90%;
     margin-bottom: 15px;
     padding: 15px;
@@ -126,14 +185,17 @@
 }
 
 .nextButton {
-    background-color: #02F5E9;
+    height: 80%;
+    width: 150px;
+    text-align: center;
+    background-color: #333;
     padding: 10px 20px;
     border: none;
     color: white;
-    font-size: 14px;
+    font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: 15px;
     transition: background-color 0.3s ease;
 }
 
@@ -143,7 +205,9 @@
 
 /* Leyenda Section */
 .leyenda {
-    background-color: #f18e89;
+    background-color: whitesmoke;
+    margin: auto;
+    text-align: center;
     width: 45%;
     padding: 20px;
     color: #333;
@@ -163,6 +227,7 @@
 
 /* Graphs Section */
 .graphsSection {
+    background-color: #03045E;
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -171,38 +236,65 @@
 }
 
 .graphsContainer {
-    width: 70%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
+.graphsContainer h3{
+    margin: 5px ;
+    padding-left: 30px;
+}
+
 .graphBox {
-    background-color: #e1e1e1;
+    margin-left: 5px;
+    background-color: #90E0EF;
     height: 250px;
-    border-radius: 5px;
+    width: 90%;
+    border-radius: 15px;
     border: 1px solid #ccc;
+}
+
+.container-graph{
+    display: flex;
+    width: 100%;
+    gap: 1.5%;
+}
+
+.detalles-graphbox{
+    background-color: #CAF0F8;
+    width: 45%;
+    border-radius: 15px;
+}
+
+.graphBox p{
+    color: black;
+    text-align: center;
 }
 
 /* Action Buttons */
 .actionButtons {
-    width: 25%;
+    background-color: #90E0EF;
+    padding: 5vh 0;
+    margin: auto;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 
 .trainButton,
 .simulateButton {
-    background-color: #198585;
+    background-color: #023E8A;
     color: white;
     padding: 15px;
     border: none;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
-    width: 100%;
+    border-radius: 15px;
+    width: 40%;
     transition: background-color 0.3s ease;
 }
 
