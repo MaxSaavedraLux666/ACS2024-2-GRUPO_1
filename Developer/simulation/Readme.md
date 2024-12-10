@@ -1,5 +1,79 @@
 # Simulación de Péndulo Invertido con Q-Learning
 
+## Table of Contents
+- [English Version](#english-version)
+- [Versión en Español](#versión-en-español)
+
+---
+<a name="english-version"></a>
+## English Version
+This repository contains a simulation of an inverted pendulum using the Q-learning reinforcement learning algorithm. The simulation is done with Pygame for graphical visualization.
+
+## Requirements
+
+* Python 3.x
+* Librerías: `numpy`, `pygame`, `matplotlib`
+  ```bash
+  pip install numpy pygame matplotlib
+  ```
+
+## Execution
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/MaxSaavedraLux666/ACS2024-2-GRUPO_1.git
+   ```
+2. **Navigate to the project directory:**
+   ```bash
+   cd Intelligent-Control-of-the-Inverted-Pendulum\Developer\simulation
+   ```
+3. **Run the main script:**
+   ```bash
+   python main.py 
+   ```
+
+This will run the agent training and then display a real-time simulation of the agent trying to maintain the pendulum balance. Graphs will be generated in the `graphs` folder showing the learning curve, episode lengths, and epsilon evolution (exploration/exploitation).
+
+## Parameters
+
+You can modify training and simulation parameters in the following files:
+
+* **`variables.py`:** This file contains the most important parameters that control the behavior of the Q-learning algorithm:
+
+* `n_actions`: Number of possible actions for the agent (usually 3).
+* `epsilon_decay`: Epsilon decay factor (controls the rate of exploration decay). Values ​​closer to 1 indicate slower decay.
+* `epsilon_min`: Minimum epsilon value (ensures minimal exploration even at the end of training).
+* `n_states`: Number of discretized states per dimension of the state space. Increasing this value increases accuracy but also training time.
+* `epsilon`: Initial epsilon value (exploration probability at the start of training, usually 1.0).
+* Other parameters related to the pendulum physics (mass, length, gravity, etc) are found in `cart_pole.py`.
+* **`train.py`:** This file contains training parameters:
+
+* `episodes`: Total number of training episodes.
+* `gamma`: Discount factor for the future value of rewards.
+* `learning_rate`: Learning rate for updating the Q table.
+
+By changing these parameters, you can experiment with different configurations and observe their impact on the agent's performance. Remember that increasing `n_states` significantly can greatly increase training time.
+
+## Project Structure
+
+* `main.py`: Main script to run the simulation.
+* `cart_pole.py`: Class that defines the inverted pendulum environment.
+* `train.py`: Functions to train the agent with Q-learning.
+* `functions.py`: Auxiliary functions (state discretization, action selection).
+* `graphics.py`: Functions to generate and save the graphs.
+* `variables.py`: File with the global variables of the project.
+* `graphs/`: Folder where the generated graphs are saved.
+
+## Considerations
+
+* Discretizing the state space can impact performance. Experimenting with different values ​​of `n_states` may be necessary.
+* Training can take a considerable amount of time, especially with a large number of states.
+
+This project provides a solid foundation for understanding and experimenting with reinforcement learning on a classic problem like the inverted pendulum. Have fun experimenting!
+
+
+<a name="versión-en-español"></a>
+## Versión en Español
 Este repositorio contiene una simulación de un péndulo invertido utilizando el algoritmo de aprendizaje por refuerzo Q-learning.  La simulación se realiza con Pygame para la visualización gráfica.
 
 ## Requisitos
@@ -14,11 +88,11 @@ Este repositorio contiene una simulación de un péndulo invertido utilizando el
 
 1. **Clona el repositorio:**
    ```bash
-   git clone <url_del_repositorio>
+   git clone https://github.com/MaxSaavedraLux666/ACS2024-2-GRUPO_1.git
    ```
 2. **Navega al directorio del proyecto:**
    ```bash
-   cd <nombre_del_repositorio>
+   cd Intelligent-Control-of-the-Inverted-Pendulum\Developer\simulation
    ```
 3. **Ejecuta el script principal:**
    ```bash
