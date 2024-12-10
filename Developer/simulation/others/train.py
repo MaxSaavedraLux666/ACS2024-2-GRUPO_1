@@ -4,7 +4,7 @@ from Developer.simulation.others.agent import QLearningAgent
 import numpy as np
 import pygame
 from cart_pole import CartPoleEnv
-from functions import discretize_state, select_action
+from Developer.simulation.functions import discretize_state, select_action
 from variables import epsilon_min,epsilon_decay,n_actions,n_states
 
 
