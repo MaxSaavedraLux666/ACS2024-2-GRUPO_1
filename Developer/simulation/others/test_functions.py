@@ -1,4 +1,4 @@
-from Developer.simulation.others.functions import Function
+from Developer.simulation.functions import Function
 
 
 # Inicializar sistema

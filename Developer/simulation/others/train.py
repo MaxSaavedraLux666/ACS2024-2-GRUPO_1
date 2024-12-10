@@ -1,13 +1,11 @@
-<<<<<<<< HEAD:Developer/simulation/others/train.py
 import gym
 from Developer.simulation.others.agent import QLearningAgent
 ========
 import numpy as np
 import pygame
 from cart_pole import CartPoleEnv
-from functions import discretize_state, select_action
+from Developer.simulation.functions import discretize_state, select_action
 from variables import epsilon_min,epsilon_decay,n_actions,n_states
->>>>>>>> a55f7f30d0ec42093e2941efce9871bcc3524197:Developer/simulation/train.py
 
 
 

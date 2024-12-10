@@ -1,2 +1,7 @@
-# Intelligent-Control-of-the-Inverted-Pendulum-Using-Classical-Reinforcement-Learning-Algorithms
-This project uses Python to control an inverted pendulum in the CartPole-v1 environment with Q-learning and SARSA. It includes a reward function to stabilize the pendulum, analysis of system dynamics, and optimizations for faster learning. Results are visualized to evaluate policy convergence and performance.
+# Intelligent Control of the Inverted Pendulum using Classical Reinforcement Learning Algorithms
+
+This project explores the control of an inverted pendulum using classical reinforcement learning algorithms, specifically Q-learning.  We leverage Python and Pygame to create a visually engaging simulation and analyze the learning process.  The project focuses on stabilizing the pendulum by designing a suitable reward function and optimizing the learning parameters for faster convergence.  Detailed results, including visualizations of policy convergence and performance metrics, are provided.
+
+This implementation provides a practical demonstration of Q-learning's capabilities in solving a challenging control problem. The code is well-structured and commented to enhance understanding.  For a comprehensive guide on running the simulation, modifying parameters, and interpreting the results, please refer to the detailed README: [Readme](https://github.com/MaxSaavedraLux666/Intelligent-Control-of-the-Inverted-Pendulum/blob/dev_max/Developer/simulation/Readme.md "Readme")
+
+This README provides a high-level overview.  The linked README contains complete instructions for running the code, along with explanations of the parameters and file structure.  It guides you through setting up the environment, executing the simulation, and interpreting the generated graphs.  This ensures you can easily reproduce the results and experiment with different parameter configurations.
