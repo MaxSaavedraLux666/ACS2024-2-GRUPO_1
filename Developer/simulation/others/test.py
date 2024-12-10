@@ -1,4 +1,4 @@
-from agent import QLearningAgent
+from Developer.simulation.others.agent import QLearningAgent
 import gym
 
 

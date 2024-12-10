@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from ..simulation.cartpole_env import CustomCartPoleEnv
+from ..simulation.others.cartpole_env import CustomCartPoleEnv
 
 
 class TestCustomCartPoleEnv(unittest.TestCase):
