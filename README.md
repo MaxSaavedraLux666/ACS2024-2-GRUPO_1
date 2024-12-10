@@ -26,7 +26,7 @@ For a detailed guide on:
 3. Modifying parameters.
 4. Interpreting results.
 
-Visit the comprehensive README here: [Readme](https://github.com/MaxSaavedraLux666/Intelligent-Control-of-the-Inverted-Pendulum/blob/dev_max/Developer/simulation/Readme.md)
+Visit the comprehensive README here: [Readme](https://github.com/MaxSaavedraLux666/Intelligent-Control-of-the-Inverted-Pendulum/blob/main/Developer/simulation/Readme.md)
 
 ---
 
@@ -50,4 +50,4 @@ Para una guía detallada sobre:
 3. Modificación de parámetros.
 4. Interpretación de resultados.
 
-Visite el README completo aquí: [Readme](https://github.com/MaxSaavedraLux666/Intelligent-Control-of-the-Inverted-Pendulum/blob/dev_max/Developer/simulation/Readme.md)
+Visite el README completo aquí: [Readme](https://github.com/MaxSaavedraLux666/Intelligent-Control-of-the-Inverted-Pendulum/blob/main/Developer/simulation/Readme.md)
